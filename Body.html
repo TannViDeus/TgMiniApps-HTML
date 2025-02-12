@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Telegram Mini App</title>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <style>
+        body { text-align: center; font-family: Arial, sans-serif; }
+        button { padding: 10px; font-size: 16px; }
+    </style>
+</head>
+<body>
+    <h1>Привет, <span id="username"></span>!</h1>
+    <button onclick="sendData()">Отправить данные боту</button>
+
+    <script>
+        let tg = window.Telegram.WebApp;
+        tg.expand();  // Разворачиваем на весь экран
+
+        document.getElementById("username").innerText = tg.initDataUnsafe.user.first_name;
+
+        function sendData() {
+            tg.sendData(JSON.stringify({ action: "clicked_button" }));  // Отправка данных боту
+        }
+    </script>
+</body>
+</html>
